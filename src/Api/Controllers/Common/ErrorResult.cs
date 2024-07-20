@@ -17,16 +17,7 @@ public class ErrorResult : IActionResult
 
     public Task ExecuteResultAsync(ActionContext context)
     {
-        var payload = new Dictionary<string, object?>()
-        {
-            ["errorCode"] = _error.Code,
-            ["errorMessage"] = _error.Message
-        };
-
-        foreach ((string? key, object? value) in _error.Details)
-        {
-            payload.Add(key, value);
-        }
+        var payload = new Dictionary<string, object?>() { ["errorCode"] = _error.Code, };
 
         ObjectResult objectResult = new ObjectResult(payload)
         {

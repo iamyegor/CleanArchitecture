@@ -32,10 +32,8 @@ public class ExceptionHandlingMiddleware
         string errorMessage = _env.IsProduction() ? "Internal server error" : exception.ToString();
         Log.Error(exception.ToString());
 
-        Error error = Errors.Server.InternalServerError(errorMessage);
-        string result = JsonConvert.SerializeObject(
-            new { errorCode = error.Code, errorMessage = error.Message }
-        );
+        Error error = Errors.Server.InternalServerError;
+        string result = JsonConvert.SerializeObject(new { errorCode = error.Code, errorMessage });
 
         context.Response.ContentType = "application/json";
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;

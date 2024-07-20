@@ -18,22 +18,10 @@ public static class DependencyInjection
 
         services
             .AddScoped(_ => new ApplicationContext(connectionString, isDevelopment))
-            .AddDapper()
-            .AddUtils();
+            .AddTransient<DapperConnectionFactory>()
+            .AddTransient<HttpClient>()
+            .AddTransient<ConnectionStringResolver>();
 
         return services;
-    }
-
-    private static IServiceCollection AddDapper(this IServiceCollection services)
-    {
-        services.AddTransient<DapperConnectionFactory>();
-
-        return services;
-    }
-
-    private static void AddUtils(this IServiceCollection services)
-    {
-        services.AddTransient<HttpClient>();
-        services.AddTransient<ConnectionStringResolver>();
     }
 }

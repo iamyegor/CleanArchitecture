@@ -7,14 +7,10 @@ namespace Domain.DomainErrors;
 public class Error : ValueObject
 {
     public string Code { get; set; }
-    public string Message { get; set; }
-    public IDictionary<string, object?> Details { get; set; }
 
-    public Error(string code, string message, IDictionary<string, object?>? details = null)
+    public Error(string code)
     {
         Code = code;
-        Message = message;
-        Details = details ?? new Dictionary<string, object?>();
     }
 
     public string Serialize()
