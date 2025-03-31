@@ -16,10 +16,6 @@
       <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Dtos\" />
-    </ItemGroup>
-
     <Target Name="CopyAppSettings" AfterTargets="Build">
         <Copy SourceFiles="appsettings.Development.json"
               DestinationFolder="../Infrastructure/bin/Debug/net8.0"
